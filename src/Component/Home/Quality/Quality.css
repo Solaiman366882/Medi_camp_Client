@@ -1,0 +1,75 @@
+.q-card {
+    border: 1px dashed #05e8c2;
+    text-align: center;
+    padding: 30px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    background-color: #ffffff;
+}
+
+.q-card::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(../../../assets/images/Quality/shape-img.png);
+    background-position: top;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 200px;
+    width: 200px;
+    z-index: -1;
+    opacity: 0.2;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.q-card:hover::after{
+    opacity: 1;
+
+}
+.q-card .card-img {
+    width: 100%;
+    text-align: center;
+}
+.q-card .card-img img {
+    max-width: 70px;
+    margin: 0 auto;
+    margin-bottom: 22px;
+}
+.q-card h2 {
+    color: #001430;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+.q-card p {
+    line-height: 1.8;
+    color: #525252;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+.q-card span.read {
+    line-height: 1;
+    color: #05e8c2;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.q-card span.read svg {
+    display: inline-block;
+    position: relative;
+}
+.q-card span.read:hover svg{
+    animation: rotation 0.5s linear infinite;
+}

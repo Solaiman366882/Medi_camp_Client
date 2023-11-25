@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet";
 import Banner from "../../Component/Home/Banner/Banner";
+import Quality from "../../Component/Home/Quality/Quality";
 
 const Home = () => {
     return (
@@ -9,6 +10,9 @@ const Home = () => {
             </Helmet>
             <div>
                 <Banner></Banner>
+            </div>
+            <div>
+                <Quality></Quality>
             </div>
         </div>
     );
