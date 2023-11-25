@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet";
+import Banner from "../../Component/Home/Banner/Banner";
 
 const Home = () => {
     return (
@@ -6,7 +7,9 @@ const Home = () => {
             <Helmet>
                 <title>Atom | Home</title>
             </Helmet>
-            this is home page
+            <div>
+                <Banner></Banner>
+            </div>
         </div>
     );
 };

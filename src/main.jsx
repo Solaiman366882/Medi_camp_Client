@@ -7,6 +7,7 @@ import {
 } from '@tanstack/react-query'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './Routes/Route.jsx'
+import './assets/css/animation.css'
 
 
 

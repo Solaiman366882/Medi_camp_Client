@@ -1,3 +1,101 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+/* 
+
+font-family: 'Lato', sans-serif;
+font-family: 'Roboto', sans-serif;
+
+*/
+body {
+    font-family: 'Lato', sans-serif;
+}
+img{
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn {
+    font-size: 16px;
+    color: #ffffff;
+    padding: 15px 30px;
+    line-height: 1;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    text-transform: capitalize;
+    position: relative;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+    background: -webkit-gradient(linear, left top, right top, from(#07e2bd), to(#1de9f5));
+    background: linear-gradient(to right, #07e2bd 0%, #1de9f5 100%);
+}
+.menu-area .btn {
+    font-size: 16px;
+    color: #ffffff;
+    padding: 12px 20px;
+}
+.btn::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	right: 100%;
+	width: 100%;
+	height: 50%;
+	background: -webkit-gradient(linear, left top, right top, from(#1de9f5), to(#07e2bd));
+	background: linear-gradient(to right, #1de9f5 0%, #07e2bd 100%);
+	z-index: -1;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.btn::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 100%;
+	width: 100%;
+	height: 50%;
+	background: -webkit-gradient(linear, left top, right top, from(#1de9f5), to(#07e2bd));
+	background: linear-gradient(to right, #1de9f5 0%, #07e2bd 100%);
+	z-index: -1;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.btn:hover::after{
+    right: 0;
+}
+.btn:hover::before{
+    left: 0;
+}
+
+.menu-area .menu-links a {
+    font-weight: 600;
+  font-size: 15px;
+  color: #ffffff;
+  text-transform: capitalize;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  margin-left: 0;
+  margin: 0 10px;
+  position: relative;
+}
+.menu-area .menu-links a.active{
+  color: #05e8c2;
+}
+.menu-area svg.h-6.w-6.shrink-0 {
+    fill: #fff;
+}
