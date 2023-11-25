@@ -18,7 +18,7 @@ const Contact = () => {
 						></SectionTitle>
 					</div>
 					<div>
-						<div className="form-area">
+						<div className="form-area mt-14">
 							<form>
 								<div className="grid grid-cols-2 gap-6">
 									<div className="single-input">
@@ -75,11 +75,7 @@ const Contact = () => {
 											+442-456a-789
 										</a>
 									</div>
-									<input
-										type="submit"
-										value="Send Message"
-										className="btn"
-									/>
+									<button className="btn" type="submit">Send Message</button>
 								</div>
 							</form>
 						</div>

@@ -65,5 +65,5 @@
 .page-banner-section .shape-2,
 .page-banner-section .shape-4{
     -webkit-animation: moveBounce 30s linear infinite;
-	animation: moveBounce 30s linear infinite;
+	animation: moveBounce 8s linear infinite;
 }

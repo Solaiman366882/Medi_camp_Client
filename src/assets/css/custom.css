@@ -3,7 +3,6 @@
     box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
     background-color: #ffffff;
     padding: 30px;
-    margin-top: 60px;
 }
 
 .form-area .single-input label {
@@ -45,4 +44,12 @@
 
 .form-area .single-input textarea {
     height: 200px;
+}
+
+.login-img{
+    background-image: url(../../assets/images/log-in-img.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
 }
