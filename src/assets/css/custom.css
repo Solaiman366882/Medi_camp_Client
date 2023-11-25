@@ -1,0 +1,48 @@
+.form-area {
+    -webkit-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    padding: 30px;
+    margin-top: 60px;
+}
+
+.form-area .single-input label {
+    font-weight: 600;
+    font-size: 18px;
+    color: #525252;
+    text-transform: capitalize;
+    display: block;
+}
+
+.form-area .single-input input,
+.form-area .single-input textarea {
+    height: 50px;
+    color: #001430;
+    border: 1px solid #e8e8e8;
+    background-color: #f2f9fc;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.form-area .single-input input::placeholder,
+.form-area .single-input textarea::placeholder {
+    color: #495057;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.form-area .single-input input:focus,
+.form-area .single-input textarea:focus {
+    color: #000000;
+    background-color: transparent;
+    -webkit-box-shadow: unset;
+    box-shadow: unset;
+    outline: 0;
+    border: 1px solid #05e8c2;
+}
+
+.form-area .single-input textarea {
+    height: 200px;
+}
