@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import SectionTitle from "../../Component/Shared/SectionTitle/SectionTitle";
 import SocialLogin from "../../Component/Shared/SocialLogin/SocialLogin";
 import { useFormik } from "formik";
-import { SignupSchema } from "../../Schemas";
+import { SignUpSchema } from "../../Schemas";
 
 
 const Register = () => {
@@ -17,7 +17,7 @@ const Register = () => {
 	const { values, handleSubmit, errors, handleBlur, handleChange,touched } =
 		useFormik({
 			initialValues: initialValues,
-			validationSchema: SignupSchema,
+			validationSchema: SignUpSchema,
 			onSubmit: (values) => {
 				console.log(values);
 			},
@@ -118,7 +118,7 @@ const Register = () => {
 							</div>
 						</form>
 						<div>
-							<div>
+							<div className="mt-3">
 								<p className=" text-primary font-semibold text-center">
 									Not a member?{" "}
 									<Link className="text-secondary ml-3">

@@ -1,15 +1,48 @@
 import * as Yup from "yup";
 
-export const SignupSchema = Yup.object().shape({
-    name: Yup.string()
-        .min(2, "Too Short!")
-        .max(50, "Too Long!")
-        .required("*Required"),
-    password: Yup.string()
-        .min(6, "password at least 6")
-        .required("Required"),
-    confirm_password: Yup.string()
-        .required("Required")
-        .oneOf([Yup.ref("password"), null], "Password Must Match"),
-    email: Yup.string().email("Invalid email").required("Required"),
+//register schema
+export const SignUpSchema = Yup.object().shape({
+	name: Yup.string()
+		.min(2, "Too Short!")
+		.max(30, "Too Long!")
+		.required("*Required"),
+	password: Yup.string()
+		.min(6, "password at least 6")
+		.required("*Required")
+		.matches(
+			"^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{6,}$",
+			"Must Contain One Uppercase, One Lowercase, One Number and one special Character"
+		),
+	confirm_password: Yup.string()
+		.required("*Required")
+		.oneOf([Yup.ref("password"), null], "Password Must Match"),
+	email: Yup.string().email("Invalid Email").required("*Required"),
+});
+
+//login schema
+export const LoginSchema = Yup.object().shape({
+	email: Yup.string().email("Invalid Email").required("*Required"),
+	password: Yup.string()
+		.min(6, "password at least 6")
+		.required("*Required")
+		.matches(
+			"^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{6,}$",
+			"Must Contain One Uppercase, One Lowercase, One Number and one special Character"
+		),
+});
+
+// Contact Schema
+export const ContactSchema = Yup.object().shape({
+	name: Yup.string()
+		.min(2, "Too Short!")
+		.max(30, "Too Long!")
+		.required("*Required"),
+	email: Yup.string().email("Invalid Email").required("*Required"),
+	phone: Yup.number()
+		.typeError("That doesn't look like a phone number")
+		.positive("Can't start with a minus")
+		.integer("Can't include a decimal point")
+		.min(8)
+		.required("Phone number is required"),
+    message:Yup.string().min(10,"Must have 10 character").required("*Required")
 });

@@ -1,8 +1,27 @@
 // import Address from "../../Component/Contact/Address/Address";
+import { useFormik } from "formik";
 import PageBanner from "../../Component/Shared/PageBanner/PageBanner";
 import SectionTitle from "../../Component/Shared/SectionTitle/SectionTitle";
+import { ContactSchema } from "../../Schemas";
 
 const Contact = () => {
+
+	const initialValues = {
+		name:"",
+		email:"",
+		phone:"",
+		subject:"",
+		message:"",
+	}
+
+	const {handleSubmit,handleChange,handleBlur,values,touched,errors} = useFormik({
+		initialValues:initialValues,
+		validationSchema:ContactSchema,
+		onSubmit: values => {
+			console.log(values);
+		}
+	})
+
 	return (
 		<div>
 			<div>
@@ -19,7 +38,7 @@ const Contact = () => {
 					</div>
 					<div>
 						<div className="form-area mt-14">
-							<form>
+							<form onSubmit={handleSubmit}>
 								<div className="grid grid-cols-2 gap-6">
 									<div className="single-input">
 										<label htmlFor="name">name</label>
@@ -28,7 +47,11 @@ const Contact = () => {
 											name="name"
 											id="name"
 											placeholder="Your Name"
+											onChange={handleChange}
+											onBlur={handleBlur}
+											value={values.name}
 										/>
+										{errors.name && touched.name ? <p className="mt-3 text-red-700">{errors.name}</p> : null}
 									</div>
 									<div className="single-input">
 										<label htmlFor="email">email</label>
@@ -37,7 +60,11 @@ const Contact = () => {
 											name="email"
 											id="email"
 											placeholder="Your Email"
+											onChange={handleChange}
+											onBlur={handleBlur}
+											value={values.email}
 										/>
+										{errors.email && touched.email ? <p className="mt-3 text-red-700">{errors.email}</p>:null}
 									</div>
 									<div className="single-input">
 										<label htmlFor="phone">phone</label>
@@ -46,7 +73,11 @@ const Contact = () => {
 											name="phone"
 											id="phone"
 											placeholder="Your Phone"
+											onChange={handleChange}
+											onBlur={handleBlur}
+											value={values.phone}
 										/>
+										{errors.phone && touched.phone ? <p className="mt-3 text-red-700">{errors.phone}</p> : null}
 									</div>
 									<div className="single-input">
 										<label htmlFor="subject">subject</label>
@@ -55,6 +86,9 @@ const Contact = () => {
 											name="subject"
 											id="subject"
 											placeholder="your subject"
+											onChange={handleChange}
+											onBlur={handleBlur}
+											value={values.subject}
 										/>
 									</div>
 									<div className="single-input col-span-2">
@@ -65,7 +99,11 @@ const Contact = () => {
 											cols="30"
 											rows="10"
 											placeholder="your message"
+											onChange={handleChange}
+											onBlur={handleBlur}
+											value={values.message}
 										></textarea>
+										{errors.message && touched.message ? <p className="mt-3 text-red-700">{errors.name}</p>:null}
 									</div>
 								</div>
 								<div className="mt-7 flex justify-between items-center">

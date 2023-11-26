@@ -1,9 +1,22 @@
 import { Link } from "react-router-dom";
 import SectionTitle from "../../Component/Shared/SectionTitle/SectionTitle";
- import { Formik } from 'formik';
+import { useFormik } from "formik";
 import SocialLogin from "../../Component/Shared/SocialLogin/SocialLogin";
+import { LoginSchema } from "../../Schemas";
 
 const Login = () => {
+	const initialValues = {
+		email: "",
+		password: "",
+	};
+	const { handleSubmit, errors, handleChange, handleBlur, touched, values } =
+		useFormik({
+			initialValues: initialValues,
+			validationSchema:LoginSchema,
+			onSubmit: (values) => {
+				console.log(values);
+			},
+		});
 	return (
 		<div className="w-full section-padding">
 			<div className="max-w-screen-xl mx-auto px-5">
@@ -18,99 +31,52 @@ const Login = () => {
 						<div>
 							<SocialLogin></SocialLogin>
 						</div>
-						<div className="single-input">
-							<label htmlFor="email">email</label>
-							<input
-								type="email"
-								placeholder="Your Email"
-								name="email"
-								id="email"
-							/>
-						</div>
-						<div className="single-input">
-							<label htmlFor="password"> password</label>
-							<input
-								type="password"
-								name="password"
-								id="password"
-								placeholder="Your Password"
-							/>
-						</div>
-						<div>
-							<div className="text-center">
-								<button className="btn" type="submit">
-									Login Now
-								</button>
+						<form onSubmit={handleSubmit}>
+							<div className="single-input">
+								<label htmlFor="email">email</label>
+								<input
+									type="email"
+									placeholder="Your Email"
+									name="email"
+									id="email"
+									onChange={handleChange}
+									onBlur={handleBlur}
+									value={values.email}
+								/>
+								{errors.email && touched.email ? <p className="text-red-700 mt-3">{errors.email}</p>:null}
+							</div>
+							<div className="single-input">
+								<label htmlFor="password"> password</label>
+								<input
+									type="password"
+									name="password"
+									id="password"
+									placeholder="Your Password"
+									onChange={handleChange}
+									onBlur={handleBlur}
+									value={values.password}
+								/>
+								{errors.password && touched.password ? <p className="text-red-700 mt-3">{errors.password}</p>:null}
 							</div>
 							<div>
-								<p className="mt-5 text-primary font-semibold text-center">
-									Not a member?{" "}
-									<Link className="text-secondary ml-3">
-										Register
-									</Link>
-								</p>
+								<div className="text-center">
+									<button className="btn" type="submit">
+										Login Now
+									</button>
+								</div>
+								<div>
+									<p className="mt-5 text-primary font-semibold text-center">
+										Not a member?{" "}
+										<Link className="text-secondary ml-3">
+											Register
+										</Link>
+									</p>
+								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 					<div className="login-img"></div>
 				</div>
-				<Formik
-					initialValues={{ email: "", password: "" }}
-					validate={(values) => {
-						const errors = {};
-						if (!values.email) {
-							errors.email = "Required";
-						} else if (
-							!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
-								values.email
-							)
-						) {
-							errors.email = "Invalid email address";
-						}
-						return errors;
-					}}
-					onSubmit={(values, { setSubmitting }) => {
-						setTimeout(() => {
-							alert(JSON.stringify(values, null, 2));
-							setSubmitting(false);
-						}, 400);
-					}}
-				>
-					{({
-						values,
-						errors,
-						touched,
-						handleChange,
-						handleBlur,
-						handleSubmit,
-						isSubmitting,
-						/* and other goodies */
-					}) => (
-						<form onSubmit={handleSubmit}>
-							<input
-								type="email"
-								name="email"
-								onChange={handleChange}
-								onBlur={handleBlur}
-								value={values.email}
-							/>
-							{errors.email && touched.email && errors.email}
-							<input
-								type="password"
-								name="password"
-								onChange={handleChange}
-								onBlur={handleBlur}
-								value={values.password}
-							/>
-							{errors.password &&
-								touched.password &&
-								errors.password}
-							<button type="submit" disabled={isSubmitting}>
-								Submit
-							</button>
-						</form>
-					)}
-				</Formik>
 			</div>
 		</div>
 	);
