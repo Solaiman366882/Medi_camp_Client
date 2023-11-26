@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SectionTitle from "../../Component/Shared/SectionTitle/SectionTitle";
-import SocialLogin from "../../Component/Shared/SocialLogin";
  import { Formik } from 'formik';
+import SocialLogin from "../../Component/Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
 	return (
