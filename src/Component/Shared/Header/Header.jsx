@@ -1,8 +1,15 @@
-import { Navbar } from "flowbite-react";
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import logo from "../../../assets/images/logo.png";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 const Header = () => {
+	const { user, logOut } = useAuth();
+	const handleLogOut = () => {
+		logOut()
+			.then((res) => console.log(res))
+			.then((err) => console.log(err));
+	};
 	return (
 		<div className="menu-area bg-[#001430]">
 			<Navbar fluid rounded className="bg-[#001430]">
@@ -13,51 +20,85 @@ const Header = () => {
 					</span>
 				</Navbar.Brand>
 				<div className="flex md:order-2">
-					<Link to='/login'><button className="btn">Login</button></Link>
+					{user ? (
+						<Dropdown
+							arrowIcon={false}
+							inline
+							label={
+								<Avatar
+									alt="User settings"
+									img={user?.photoURL}
+									rounded
+								/>
+							}
+						>
+							<Dropdown.Header>
+								<span className="block text-sm">
+									{user?.displayName}
+								</span>
+								<span className="block truncate text-sm font-medium">
+									{user.email}
+								</span>
+							</Dropdown.Header>
+							<Dropdown.Item>
+								<Link to="/dashboard">Dashboard</Link>
+							</Dropdown.Item>
+							<Dropdown.Item>Settings</Dropdown.Item>
+							<Dropdown.Item>Earnings</Dropdown.Item>
+							<Dropdown.Divider />
+							<Dropdown.Item onClick={handleLogOut}>
+								Sign out
+							</Dropdown.Item>
+						</Dropdown>
+					) : (
+						<Link to="/login">
+							<button className="btn">Login</button>
+						</Link>
+					)}
 					<Navbar.Toggle />
 				</div>
 				<Navbar.Collapse>
 					<div className="menu-links flex flex-col gap-4 justify-center items-center md:block">
-					<NavLink
-						to="/"
-						className={({ isActive, isPending }) =>
-							isPending ? "pending" : isActive ? "active" : ""
-						}
-					>
-						Home
-					</NavLink>
-					<NavLink
-						to="/availableCamps"
-						className={({ isActive, isPending }) =>
-							isPending ? "pending" : isActive ? "active" : ""
-						}
-					>
-						Available Camps
-					</NavLink>
-					<NavLink
-						to="/dashboard"
-						className={({ isActive, isPending }) =>
-							isPending ? "pending" : isActive ? "active" : ""
-						}
-					>
-						Dashboard
-					</NavLink>
-					<NavLink
-						to="/contact"
-						className={({ isActive, isPending }) =>
-							isPending ? "pending" : isActive ? "active" : ""
-						}
-					>
-						Contact Us
-					</NavLink>
-					<NavLink
-						to="/register"
-						className={({ isActive, isPending }) =>
-							isPending ? "pending" : isActive ? "active" : ""
-						}
-					>
-						Register
-					</NavLink>
+						<NavLink
+							to="/"
+							className={({ isActive, isPending }) =>
+								isPending ? "pending" : isActive ? "active" : ""
+							}
+						>
+							Home
+						</NavLink>
+						<NavLink
+							to="/availableCamps"
+							className={({ isActive, isPending }) =>
+								isPending ? "pending" : isActive ? "active" : ""
+							}
+						>
+							Available Camps
+						</NavLink>
+						<NavLink
+							to="/dashboard"
+							className={({ isActive, isPending }) =>
+								isPending ? "pending" : isActive ? "active" : ""
+							}
+						>
+							Dashboard
+						</NavLink>
+						<NavLink
+							to="/contact"
+							className={({ isActive, isPending }) =>
+								isPending ? "pending" : isActive ? "active" : ""
+							}
+						>
+							Contact Us
+						</NavLink>
+						<NavLink
+							to="/register"
+							className={({ isActive, isPending }) =>
+								isPending ? "pending" : isActive ? "active" : ""
+							}
+						>
+							Register
+						</NavLink>
 					</div>
 				</Navbar.Collapse>
 			</Navbar>
