@@ -25,6 +25,11 @@
     width: 100%;
 }
 
+.form-area .single-input input[type="file"] {
+    width: auto;
+    height: auto;
+}
+
 .form-area .single-input input::placeholder,
 .form-area .single-input textarea::placeholder {
     color: #495057;
@@ -46,8 +51,15 @@
     height: 200px;
 }
 
-.login-img{
+.login-img {
     background-image: url(../../assets/images/log-in-img.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+.register-img {
+    background-image: url(../../assets/images/sign-in-img.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

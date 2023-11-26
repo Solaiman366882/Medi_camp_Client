@@ -29,18 +29,34 @@
     position: absolute;
     margin-left: auto;
     right: 0;
-    /* bottom: 0; */
-    top: 50px;
+    bottom: -230px;
+    z-index: 2;
 }
 .Banner-section .banner-img-wrap img{
-    /* max-height: 500px; */
     object-fit: cover;
 }
 .Banner-section .banner-shape {
     position: absolute;
-    right: -26px;
-    max-width: 600px;
+    right: -20px;
+    max-width: 530px;
     z-index: -1;
     animation: rotation 30s linear infinite;
-    bottom: -30px;
+    bottom: 30px;
 }
+.Banner-section .banner-right{
+    position: relative;
+}
+@media only screen and (min-width: 1500px) {
+    .Banner-section .banner-right{
+        position: static;
+    }
+    .Banner-section .banner-img-wrap {
+        max-width: 100%;
+        position: absolute;
+        bottom: 0;
+    }
+    .Banner-section .banner-shape {
+        right: -65px;
+        max-width: 1000px;
+    }
+  }

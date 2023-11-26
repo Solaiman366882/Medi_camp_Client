@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SectionTitle from "../../Component/Shared/SectionTitle/SectionTitle";
+import SocialLogin from "../../Component/Shared/SocialLogin";
 
 const Login = () => {
 	return (
@@ -13,6 +14,9 @@ const Login = () => {
 				</div>
 				<div className="login-area grid grid-cols-2 gap-6 mt-12">
 					<div className="form-area grid grid-cols-1 gap-5">
+						<div>
+							<SocialLogin></SocialLogin>
+						</div>
 						<div className="single-input">
 							<label htmlFor="email">email</label>
 							<input
