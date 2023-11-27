@@ -44,5 +44,25 @@ export const ContactSchema = Yup.object().shape({
 		.integer("Can't include a decimal point")
 		.min(8)
 		.required("Phone number is required"),
-    message:Yup.string().min(10,"Must have 10 character").required("*Required")
+	message: Yup.string()
+		.min(10, "Must have 10 character")
+		.required("*Required"),
+});
+
+//add camp schema
+export const CampSchema = Yup.object().shape({
+	camp_name: Yup.string()
+		.min(30, "You have enter minimum 30 characters")
+		.required("Required"),
+	camp_fees: Yup.string().required("Required"),
+	start_date: Yup.date().required("Starting Date is required"),
+	end_date: Yup.date().required("Ending date is Required"),
+	camp_professionals: Yup.string().required("*Required"),
+	venue: Yup.string().required("*Required"),
+	camp_services: Yup.string().required("*Required"),
+	audience: Yup.string().required("*Required"),
+	camp_img: Yup.mixed().required("Image is Required"),
+	camp_description: Yup.string().test("minWords","Must have at least 20 words", value => {
+		value.split(" ") >= 5
+	}).required("*Required"),
 });
