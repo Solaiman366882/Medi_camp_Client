@@ -1,8 +1,14 @@
 import { useFormik } from "formik";
 import SectionTitle from "../../../Component/Shared/SectionTitle/SectionTitle";
 import { CampSchema } from "../../../Schemas";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const AddCamp = () => {
+
+	const img_api_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+	const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_api_key}`;
+	const axiosPublic = useAxiosPublic();
+
 	const initialValues = {
 		camp_name: "",
 		camp_fees: "",
@@ -27,8 +33,16 @@ const AddCamp = () => {
 	} = useFormik({
 		initialValues: initialValues,
 		validationSchema: CampSchema,
-		onSubmit: (values) => {
+		onSubmit: async(values ,{setSubmitting}) => {
 			console.log(values);
+			const imgFile = {image : values.camp_img}
+			const res = await axiosPublic(img_hosting_api,imgFile,{
+				headers:{
+					'content-type':'multipart/form-data'
+				}
+			});
+			console.log('img posted successfully',res.data);
+			setSubmitting(false)
 		},
 	});
 
@@ -88,7 +102,7 @@ const AddCamp = () => {
 								</label>
 								<input
 									type="date"
-									name="start_data"
+									name="start_date"
 									id="start_date_time"
 									onChange={handleChange}
 									onBlur={handleBlur}
@@ -104,7 +118,7 @@ const AddCamp = () => {
 								<label htmlFor="end_date_time">End date</label>
 								<input
 									type="date"
-									name="end-date"
+									name="end_date"
 									id="end_date_time"
 									onChange={handleChange}
 									onBlur={handleBlur}
@@ -225,7 +239,7 @@ const AddCamp = () => {
 									placeholder="Upload an Image"
 									onChange={(e) => {
 										setFieldValue(
-											"image",
+											"camp_img",
 											e.currentTarget.files[0]
 										);
 									}}

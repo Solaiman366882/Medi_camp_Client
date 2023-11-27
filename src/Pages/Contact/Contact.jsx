@@ -6,6 +6,7 @@ import { ContactSchema } from "../../Schemas";
 
 const Contact = () => {
 
+
 	const initialValues = {
 		name:"",
 		email:"",

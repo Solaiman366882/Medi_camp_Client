@@ -61,8 +61,10 @@ export const CampSchema = Yup.object().shape({
 	venue: Yup.string().required("*Required"),
 	camp_services: Yup.string().required("*Required"),
 	audience: Yup.string().required("*Required"),
-	camp_img: Yup.mixed().required("Image is Required"),
-	camp_description: Yup.string().test("minWords","Must have at least 20 words", value => {
-		value.split(" ") >= 5
-	}).required("*Required"),
+	// camp_img: Yup.mixed().required("Image is Required"),
+	camp_description: Yup.string()
+		// .test("minWords", "Must have at least 20 words", (value) => {
+		// 	value.split(/\s+/) >= 5;
+		// })
+		.required("*Required"),
 });
