@@ -36,7 +36,7 @@ const AddCamp = () => {
 		onSubmit: async(values ,{setSubmitting}) => {
 			console.log(values);
 			const imgFile = {image : values.camp_img}
-			const res = await axiosPublic(img_hosting_api,imgFile,{
+			const res = await axiosPublic.post(img_hosting_api,imgFile,{
 				headers:{
 					'content-type':'multipart/form-data'
 				}
