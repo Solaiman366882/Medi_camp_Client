@@ -99,6 +99,14 @@ const Header = () => {
 						>
 							Register
 						</NavLink>
+						<NavLink
+							to="/add-a-camp"
+							className={({ isActive, isPending }) =>
+								isPending ? "pending" : isActive ? "active" : ""
+							}
+						>
+							Add Camp
+						</NavLink>
 					</div>
 				</Navbar.Collapse>
 			</Navbar>
