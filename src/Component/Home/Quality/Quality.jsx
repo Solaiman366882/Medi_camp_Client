@@ -6,7 +6,7 @@ import { FaPlus } from "react-icons/fa6";
 const Quality = () => {
 	return (
 		<div className="section-padding bg-white w-full">
-			<div className="max-w-screen-xl mx-auto px-5">
+			<div className="w-full">
 				<div className="grid grid-cols-3 gap-5">
 					<div className="q-card">
 						<div className="card-img">

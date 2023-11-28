@@ -1,0 +1,86 @@
+.camp-card {
+    width: 100%;
+    position: relative;
+    transition: 0.5s all;
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+
+}
+
+.camp-card .card-body {
+    width: 100%;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow: hidden;
+    transition: 0.5s all;
+
+}
+.camp-card .card-body h2 ,
+.camp-card .card-body h3 ,
+.camp-card .card-body h4 ,
+.camp-card .card-body a ,
+.camp-card .card-body p {
+    transition: 0.5s all;
+
+}
+.camp-card:hover .card-body h2 ,
+.camp-card:hover .card-body h3 ,
+.camp-card:hover .card-body h4 ,
+.camp-card:hover .card-body a ,
+.camp-card:hover .card-body p {
+    color: #fff !important;
+
+}
+
+.camp-card .card-body::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 50%;
+    background-color: #05e8c2;
+    height: 100%;
+    top: 0;
+    left: -50%;
+    z-index: -1;
+    transition: 0.6s all;
+}
+
+.camp-card .card-body::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 50%;
+    background-color: #05e8c2;
+    height: 100%;
+    top: 0;
+    right: -50%;
+    z-index: -1;
+    transition: 0.6s all;
+}
+.camp-card:hover .card-body::before {
+    width: 50%;
+    right: 0;
+}
+.camp-card:hover .card-body::after {
+    width: 50%;
+    left: 0;
+}
+.camp-card .card-body .read {
+    display: flex;
+    gap: 8px;
+    color: #05e8c2;
+    align-items: center;
+    position: relative;
+    font-weight: 500;
+}
+.camp-card .card-body .read .icon{
+    position: relative;
+}
+.camp-card .card-body .read:hover .icon{
+    animation: rotation 0.5s linear infinite;
+}

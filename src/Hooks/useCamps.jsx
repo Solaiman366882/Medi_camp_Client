@@ -6,10 +6,11 @@ const useCamps = () => {
 
     const axiosPublic = useAxiosPublic();
 
-    const {data:camps,isLoading} = useQuery({
+    const {data:camps = [],isLoading} = useQuery({
         queryKey:['camps'],
-        queryFn:() => {
-            const res =  axiosPublic.get('/camps');
+        queryFn: async() => {
+            const res = await axiosPublic.get('/camps');
+            console.log(res.data);
             return res.data;
         }
     })
