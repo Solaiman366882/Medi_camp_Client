@@ -2,12 +2,21 @@ import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import logo from "../../../assets/images/logo.png";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Header = () => {
 	const { user, logOut } = useAuth();
 	const handleLogOut = () => {
 		logOut()
-			.then((res) => console.log(res))
+			.then((res) => {
+				console.log(res);
+				Swal.fire({
+					icon: "success",
+					title: "Logged Out",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+			})
 			.then((err) => console.log(err));
 	};
 	return (

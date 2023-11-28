@@ -31,7 +31,7 @@ const Login = () => {
 						<div>
 							<SocialLogin></SocialLogin>
 						</div>
-						<form onSubmit={handleSubmit}>
+						<form onSubmit={handleSubmit} className="grid grid-cols-1 gap-5">
 							<div className="single-input">
 								<label htmlFor="email">email</label>
 								<input

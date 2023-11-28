@@ -126,7 +126,7 @@ const CampDetails = () => {
 				</div>
 			</div>
 			<Modal show={openModal} size="md" onClose={onCloseModal} popup>
-				<Modal.Header>Terms of Service</Modal.Header>
+				<Modal.Header>Registration</Modal.Header>
 				<Modal.Body>
 					<div className="space-y-6"> this is modal</div>
 				</Modal.Body>
