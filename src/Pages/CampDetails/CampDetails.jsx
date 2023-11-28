@@ -5,12 +5,13 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import "./CampDetails.css";
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
+import useAuth from "../../Hooks/useAuth";
 
 const CampDetails = () => {
 	const [openModal, setOpenModal] = useState(false);
+	const{user} = useAuth();
 	const { campId } = useParams();
 	const axiosSecure = useAxiosSecure();
-	console.log(campId);
 	const { data: campInfo } = useQuery({
 		queryKey: ["camp"],
 		queryFn: async () => {
@@ -20,6 +21,7 @@ const CampDetails = () => {
 	});
 
 	const {
+		_id,
 		camp_name,
 		camp_fees,
 		start_date,
@@ -34,6 +36,31 @@ const CampDetails = () => {
 
 	const onCloseModal = () => {
 		setOpenModal(false);
+	};
+	const handleRegistration = (e) => {
+		e.preventDefault();
+		const form = e.target;
+		const pName=form.pname.value;
+		const age = form.age.value;
+		const phone = form.phone.value;
+		const gender = form.gender.value;
+		const address = form.address.value;
+		console.log(pName);
+
+		const registrationInfo = {
+			patient_name:pName,
+			patient_age:age,
+			phone,
+			gender,
+			address,
+			fees:camp_fees,
+			email:user?.email,
+			camp_name,
+			camp_id : _id
+
+		}
+
+		console.log("Registration handled",registrationInfo);
 	};
 
 	return (
@@ -125,20 +152,107 @@ const CampDetails = () => {
 					</div>
 				</div>
 			</div>
-			<Modal show={openModal} size="md" onClose={onCloseModal} popup>
-				<Modal.Header>Registration</Modal.Header>
-				<Modal.Body>
-					<div className="space-y-6"> this is modal</div>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button onClick={() => setOpenModal(false)}>
-						I accept
-					</Button>
-					<Button color="gray" onClick={() => setOpenModal(false)}>
-						Decline
-					</Button>
-				</Modal.Footer>
-			</Modal>
+			<div>
+				<Modal show={openModal} size="md" onClose={onCloseModal} popup>
+					<Modal.Header>Registration</Modal.Header>
+					<form onSubmit={handleRegistration}>
+						<Modal.Body>
+							<div className="space-y-6">
+								<div className="form-area grid grid-cols-1 gap-5">
+									<div className="single-input">
+										<label htmlFor="name">name</label>
+										<input
+											type="text"
+											name="pname"
+											id="name"
+											placeholder="patient name"
+										/>
+									</div>
+									<div className="single-input">
+										<label htmlFor="age">age</label>
+										<input
+											type="number"
+											name="age"
+											id="age"
+											placeholder="patient age"
+										/>
+									</div>
+									<div className="single-input">
+										<label htmlFor="phone">Phone</label>
+										<input
+											type="tel"
+											name="phone"
+											id="name"
+											placeholder="phone"
+										/>
+									</div>
+									<div className="flex justify-between capitalize items-center">
+										<div className="flex gap-3 items-center">
+											<label htmlFor="male">male</label>
+											<input
+												type="radio"
+												name="gender"
+												id="male"
+												value="male"
+												defaultChecked
+											/>
+										</div>
+										<div className="flex gap-3 items-center">
+											<label htmlFor="female">
+												female
+											</label>
+											<input
+												type="radio"
+												name="gender"
+												id="female"
+												value="female"
+											/>
+										</div>
+										<div className="flex gap-3 items-center">
+											<label htmlFor="other">other</label>
+											<input
+												type="radio"
+												name="gender"
+												id="other"
+												value="other"
+											/>
+										</div>
+									</div>
+									<div className="single-input">
+										<label htmlFor="fees">fees</label>
+										<input type="text" defaultValue={camp_fees} readOnly />
+									</div>
+									<div className="single-input">
+										<label htmlFor="address">address</label>
+										<input
+											type="text"
+											name="address"
+											id="address"
+											placeholder="Your address"
+										/>
+									</div>
+								</div>
+							</div>
+							<Modal.Footer>
+								{/* <Button onClick={() => setOpenModal(false)}>
+								I accept
+							</Button> */}
+								<button className="btn" type="submit">
+									Submit
+								</button>
+
+								<Button
+									color="gray"
+									type="button"
+									onClick={() => setOpenModal(false)}
+								>
+									Cancel
+								</Button>
+							</Modal.Footer>
+						</Modal.Body>
+					</form>
+				</Modal>
+			</div>
 		</div>
 	);
 };
