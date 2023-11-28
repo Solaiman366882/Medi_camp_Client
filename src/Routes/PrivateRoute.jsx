@@ -1,6 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-// import { Spinner } from "flowbite-react";
 import useAuth from "../Hooks/useAuth";
 import Loader from "../Component/Shared/Loader/Loader";
 
@@ -10,12 +9,7 @@ const PrivateRoute = ({ children }) => {
 	const location = useLocation();
 
 	if (loading) {
-		return (
-			// <div className="h-[80vh] w-full flex justify-center items-center">
-			// 	<Spinner aria-label="Extra large spinner example" size="xl" />
-			// </div>
-            <Loader></Loader>
-		);
+		return <Loader></Loader>
 	} else {
 		if (user) {
 			return children;

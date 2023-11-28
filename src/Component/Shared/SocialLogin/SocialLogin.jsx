@@ -3,23 +3,35 @@ import { FacebookAuthProvider } from "firebase/auth";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const SocialLogin = () => {
 
     const {googleLogin,facebookLogin,githubLogin} = useAuth();
     const navigate = useNavigate();
-    const location = useLocation()
+    const location = useLocation();
+    const axiosPublic = useAxiosPublic();
 
     const handleGoogleLogin = () => {
         googleLogin()
         .then(res => {
             console.log(res);
-            Swal.fire({
-                title: "Logged In",
-                text: `Welcome ${res?.user?.displayName}`,
-                icon: "success"
-              });
-              navigate(location?.state ? location.state : "/");
+            const userInfo = {
+                email: res.user?.email,
+                name: res.user?.displayName,
+                photo:res.user?.photoURL,
+                role:'participants'
+            }
+            axiosPublic.post('/users',userInfo)
+            .then(result => {
+                console.log(result.data);
+                Swal.fire({
+                    title: "Logged In",
+                    text: `Welcome ${res?.user?.displayName}`,
+                    icon: "success"
+                  });
+                  navigate(location?.state ? location.state : "/");
+            })
         })
         .catch(err => console.log(err))
     }

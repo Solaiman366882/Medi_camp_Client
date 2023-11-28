@@ -1,10 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SectionTitle from "../../Component/Shared/SectionTitle/SectionTitle";
 import { useFormik } from "formik";
 import SocialLogin from "../../Component/Shared/SocialLogin/SocialLogin";
 import { LoginSchema } from "../../Schemas";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
+	const { userLogin } = useAuth();
+	const navigate = useNavigate();
+	const location = useLocation();
 	const initialValues = {
 		email: "",
 		password: "",
@@ -12,9 +17,18 @@ const Login = () => {
 	const { handleSubmit, errors, handleChange, handleBlur, touched, values } =
 		useFormik({
 			initialValues: initialValues,
-			validationSchema:LoginSchema,
+			validationSchema: LoginSchema,
 			onSubmit: (values) => {
 				console.log(values);
+				userLogin(values.email, values.password)
+					.then((result) => {
+						//redirect after successfull login
+						navigate(location?.state ? location.state : "/");
+						console.log(result);
+						Swal.fire("Good job!", "Login Successfully", "success");
+					})
+					.catch((err) => console.log(err));
+				console.log(values.email, values.password);
 			},
 		});
 	return (
@@ -31,7 +45,10 @@ const Login = () => {
 						<div>
 							<SocialLogin></SocialLogin>
 						</div>
-						<form onSubmit={handleSubmit} className="grid grid-cols-1 gap-5">
+						<form
+							onSubmit={handleSubmit}
+							className="grid grid-cols-1 gap-5"
+						>
 							<div className="single-input">
 								<label htmlFor="email">email</label>
 								<input
@@ -43,7 +60,11 @@ const Login = () => {
 									onBlur={handleBlur}
 									value={values.email}
 								/>
-								{errors.email && touched.email ? <p className="text-red-700 mt-3">{errors.email}</p>:null}
+								{errors.email && touched.email ? (
+									<p className="text-red-700 mt-3">
+										{errors.email}
+									</p>
+								) : null}
 							</div>
 							<div className="single-input">
 								<label htmlFor="password"> password</label>
@@ -56,7 +77,11 @@ const Login = () => {
 									onBlur={handleBlur}
 									value={values.password}
 								/>
-								{errors.password && touched.password ? <p className="text-red-700 mt-3">{errors.password}</p>:null}
+								{errors.password && touched.password ? (
+									<p className="text-red-700 mt-3">
+										{errors.password}
+									</p>
+								) : null}
 							</div>
 							<div>
 								<div className="text-center">

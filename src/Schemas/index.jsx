@@ -9,10 +9,11 @@ export const SignUpSchema = Yup.object().shape({
 	password: Yup.string()
 		.min(6, "password at least 6")
 		.required("*Required")
-		.matches(
-			"^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{6,}$",
-			"Must Contain One Uppercase, One Lowercase, One Number and one special Character"
-		),
+		// .matches(
+		// 	"^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{6,}$",
+		// 	"Must Contain One Uppercase, One Lowercase, One Number and one special Character"
+		// ),,
+		,
 	confirm_password: Yup.string()
 		.required("*Required")
 		.oneOf([Yup.ref("password"), null], "Password Must Match"),
@@ -25,10 +26,10 @@ export const LoginSchema = Yup.object().shape({
 	password: Yup.string()
 		.min(6, "password at least 6")
 		.required("*Required")
-		.matches(
-			"^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{6,}$",
-			"Must Contain One Uppercase, One Lowercase, One Number and one special Character"
-		),
+		// .matches(
+		// 	"^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{6,}$",
+		// 	"Must Contain One Uppercase, One Lowercase, One Number and one special Character"
+		// ),
 });
 
 // Contact Schema

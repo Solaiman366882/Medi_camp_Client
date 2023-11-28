@@ -1,29 +1,79 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SectionTitle from "../../Component/Shared/SectionTitle/SectionTitle";
 import SocialLogin from "../../Component/Shared/SocialLogin/SocialLogin";
 import { useFormik } from "formik";
 import { SignUpSchema } from "../../Schemas";
-
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
 const Register = () => {
+	const axiosPublic = useAxiosPublic();
+	const img_api_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+	const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_api_key}`;
+	const navigate = useNavigate();
+	const {createUser,updateUserProfile} = useAuth()
+
 	const initialValues = {
 		name: "",
 		email: "",
-		// profile_img: {},
+		profile_img: null,
 		password: "",
 		confirm_password: "",
 	};
 
-	const { values, handleSubmit, errors, handleBlur, handleChange,touched } =
-		useFormik({
-			initialValues: initialValues,
-			validationSchema: SignUpSchema,
-			onSubmit: (values) => {
-				console.log(values);
-			},
-		});
-	//console.log("formik data", formik);
+	const {
+		values,
+		handleSubmit,
+		errors,
+		handleBlur,
+		handleChange,
+		touched,
+		setFieldValue,
+	} = useFormik({
+		initialValues: initialValues,
+		validationSchema: SignUpSchema,
+		onSubmit: async (values) => {
+			console.log(values);
+			const imgFile = { image: values.profile_img };
+			const res = await axiosPublic.post(img_hosting_api, imgFile, {
+				headers: {
+					"content-type": "multipart/form-data",
+				},
+			});
+			const photo = res.data.data.display_url;
+			createUser(values.email, values.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                updateUserProfile(values.name, photo)
+                    .then(() => {
+                        const userInfo = {
+                            name: values.name,
+                            email: values.email,
+							password:values.password,
+							role:"participants",
+							photo:photo,
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Your Account successfully created',
+                                        showConfirmButton: false,
+                                        timer: 2000
+                                    });
+                                    navigate('/');
+                                }
+                            })
 
+
+                    })
+                    .catch(error => console.log(error))
+            })
+		},
+	});
 	return (
 		<div className="w-full section-padding">
 			<div className="max-w-screen-xl mx-auto px-5">
@@ -53,7 +103,11 @@ const Register = () => {
 									onChange={handleChange}
 									onBlur={handleBlur}
 								/>
-								{errors.name && touched.name ? <p className="text-red-700 mt-2">{errors.name}</p>:null}
+								{errors.name && touched.name ? (
+									<p className="text-red-700 mt-2">
+										{errors.name}
+									</p>
+								) : null}
 							</div>
 							<div className="single-input">
 								<label htmlFor="email">email</label>
@@ -66,9 +120,13 @@ const Register = () => {
 									onChange={handleChange}
 									onBlur={handleBlur}
 								/>
-								{errors.email && touched.email ? <p className="text-red-700 mt-2">{errors.email}</p>:null}
+								{errors.email && touched.email ? (
+									<p className="text-red-700 mt-2">
+										{errors.email}
+									</p>
+								) : null}
 							</div>
-							{/* <div className="single-input">
+							<div className="single-input">
 								<label htmlFor="profile_img">
 									Profile Picture
 								</label>
@@ -77,11 +135,15 @@ const Register = () => {
 									name="profile_img"
 									id="profile_img"
 									placeholder="Your Image"
-									value={values.profile_img}
-									onChange={handleChange}
+									onChange={(e) => {
+										setFieldValue(
+											"profile_img",
+											e.currentTarget.files[0]
+										);
+									}}
 									onBlur={handleBlur}
 								/>
-							</div> */}
+							</div>
 							<div className="single-input">
 								<label htmlFor="password"> password</label>
 								<input
@@ -93,7 +155,11 @@ const Register = () => {
 									onChange={handleChange}
 									onBlur={handleBlur}
 								/>
-								{errors.password && touched.password ? <p className="text-red-700 mt-2">{errors.password}</p>:null}
+								{errors.password && touched.password ? (
+									<p className="text-red-700 mt-2">
+										{errors.password}
+									</p>
+								) : null}
 							</div>
 							<div className="single-input">
 								<label htmlFor="confirm_password">
@@ -109,7 +175,12 @@ const Register = () => {
 									onChange={handleChange}
 									onBlur={handleBlur}
 								/>
-								{errors.confirm_password && touched.confirm_password ? <p className="text-red-700 mt-2">{errors.confirm_password}</p>:null}
+								{errors.confirm_password &&
+								touched.confirm_password ? (
+									<p className="text-red-700 mt-2">
+										{errors.confirm_password}
+									</p>
+								) : null}
 							</div>
 							<div className="text-center mt-5">
 								<button className="btn" type="submit">
