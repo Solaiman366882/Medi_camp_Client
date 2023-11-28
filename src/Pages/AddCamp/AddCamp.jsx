@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
-import SectionTitle from "../../../Component/Shared/SectionTitle/SectionTitle";
-import { CampSchema } from "../../../Schemas";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import SectionTitle from "../../Component/Shared/SectionTitle/SectionTitle";
+import { CampSchema } from "../../Schemas";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const AddCamp = () => {
 

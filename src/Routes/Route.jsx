@@ -4,7 +4,8 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Contact from "../Pages/Contact/Contact";
-import AddCamp from "../Pages/Register/AddCamp/AddCamp";
+import CampDetails from "../Pages/CampDetails/CampDetails";
+import AddCamp from "../Pages/AddCamp/AddCamp";
 
 
 
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
             {
                 path:'/add-a-camp',
                 element:<AddCamp></AddCamp>
+            },
+            {
+                path:'/camp-details/:campId',
+                element:<CampDetails></CampDetails>
             }
         ]
     }
