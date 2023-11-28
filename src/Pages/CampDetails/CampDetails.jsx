@@ -6,13 +6,14 @@ import "./CampDetails.css";
 import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CampDetails = () => {
 	const [openModal, setOpenModal] = useState(false);
-	const{user} = useAuth();
+	const { user } = useAuth();
 	const { campId } = useParams();
 	const axiosSecure = useAxiosSecure();
-	const { data: campInfo } = useQuery({
+	const { data: campInfo, refetch } = useQuery({
 		queryKey: ["camp"],
 		queryFn: async () => {
 			const res = await axiosSecure.get(`/camps/${campId}`);
@@ -21,7 +22,6 @@ const CampDetails = () => {
 	});
 
 	const {
-		_id,
 		camp_name,
 		camp_fees,
 		start_date,
@@ -32,6 +32,7 @@ const CampDetails = () => {
 		audience,
 		camp_img,
 		camp_description,
+		participants,
 	} = campInfo || {};
 
 	const onCloseModal = () => {
@@ -40,7 +41,7 @@ const CampDetails = () => {
 	const handleRegistration = (e) => {
 		e.preventDefault();
 		const form = e.target;
-		const pName=form.pname.value;
+		const pName = form.pname.value;
 		const age = form.age.value;
 		const phone = form.phone.value;
 		const gender = form.gender.value;
@@ -48,19 +49,37 @@ const CampDetails = () => {
 		console.log(pName);
 
 		const registrationInfo = {
-			patient_name:pName,
-			patient_age:age,
+			patient_name: pName,
+			patient_age: age,
 			phone,
 			gender,
 			address,
-			fees:camp_fees,
-			email:user?.email,
+			fees: camp_fees,
+			email: user?.email,
 			camp_name,
-			camp_id : _id
-
-		}
-
-		console.log("Registration handled",registrationInfo);
+			camp_id: campId,
+		};
+		const participantCount = parseInt(participants) + 1;
+		const updated = { participants: participantCount };
+		console.log("Registration handled", registrationInfo, updated);
+		axiosSecure.patch(`/participant/${campId}`, updated).then((res) => {
+			console.log(res);
+			if (res.data.modifiedCount > 0) {
+				axiosSecure
+					.post("/register", registrationInfo)
+					.then((result) => {
+						if (result.data.insertedId) {
+							setOpenModal(false);
+							Swal.fire({
+								title: "Good job!",
+								text: "Successfully Registered",
+								icon: "success",
+							});
+						}
+					});
+			}
+			refetch();
+		});
 	};
 
 	return (
@@ -81,15 +100,15 @@ const CampDetails = () => {
 							<div>
 								<p className="text-primary text-lg font-semibold">
 									<span className="text-secondary text-base">
-										going start on :{" "}
-									</span>{" "}
+										going start on :
+									</span>
 									{start_date}
 								</p>
 								<p className="text-primary text-lg font-semibold">
 									<span className="text-secondary text-base">
-										end will :{" "}
-									</span>{" "}
-									{end_date}{" "}
+										end will :
+									</span>
+									{end_date}
 								</p>
 							</div>
 							<div>
@@ -121,24 +140,30 @@ const CampDetails = () => {
 							</p>
 							<h4 className="text-primary text-lg font-semibold capitalize">
 								<span className="text-secondary text-base">
-									Camp for :{" "}
-								</span>{" "}
+									Camp for :
+								</span>
 								{audience}
 							</h4>
 							<p className="text-primary text-lg font-semibold capitalize">
 								<span className="text-secondary text-base">
 									fees :
-								</span>{" "}
+								</span>
 								${camp_fees} only
 							</p>
 						</div>
-						<div className="my-4">
+						<div className="my-4 flex justify-between items-center">
 							<h5 className="text-primary text-lg font-semibold capitalize">
 								<span className="text-secondary text-base">
 									Camp Services:
-								</span>{" "}
+								</span>
 								{camp_services}
 							</h5>
+							<p className="text-primary text-lg font-semibold capitalize">
+								<span className="text-secondary text-base">
+									Participants :
+								</span>
+								{parseInt(participants)}
+							</p>
 						</div>
 						<div>
 							<p className="text-primary text-base font-medium">
@@ -220,7 +245,11 @@ const CampDetails = () => {
 									</div>
 									<div className="single-input">
 										<label htmlFor="fees">fees</label>
-										<input type="text" defaultValue={camp_fees} readOnly />
+										<input
+											type="text"
+											defaultValue={camp_fees}
+											readOnly
+										/>
 									</div>
 									<div className="single-input">
 										<label htmlFor="address">address</label>
