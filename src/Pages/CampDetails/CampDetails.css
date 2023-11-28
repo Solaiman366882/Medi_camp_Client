@@ -1,0 +1,42 @@
+.camp-details {
+    border: 1px dashed #05e8c2;
+    padding: 10px;
+    width: 100%;
+}
+.camp-details .camp-img {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.camp-details .camp-img img{
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+.camp-details .camp-img img{
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+.camp-details .camp-details-body {
+    padding: 15px;
+    width: 100%;
+}
+.camp-details .camp-details-body  .camp-date {
+    width: 100%;
+    text-transform: capitalize;
+    background: #f7f7f7;
+    padding: 15px 25px;
+    border-radius: 6px;
+    position: relative;
+}
+.camp-details .camp-details-body  .camp-date::after{
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 80%;
+    background: #05e8c2;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}

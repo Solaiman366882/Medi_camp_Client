@@ -10,7 +10,6 @@ const useCamps = () => {
         queryKey:['camps'],
         queryFn: async() => {
             const res = await axiosPublic.get('/camps');
-            console.log(res.data);
             return res.data;
         }
     })
