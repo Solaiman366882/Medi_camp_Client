@@ -73,3 +73,6 @@
 .section-padding{
     padding: 90px 0;
 }
+.swal2-actions {
+    gap: 12px;
+}
