@@ -14,9 +14,9 @@ const Banner = () => {
 							We are Committed <br /> to Your Best Health
 						</h2>
 						<p className="text-white">
-							Lorem ipsum dolor sit amet, consectetur adipiscing
-							elit, sed do eiusmod <br /> tempor incididunt ut labore et
-							dolore magna aliqua gravida. Risus commodo. 
+							He who has health has hope and he who has hope has
+							everything. <br /> Lets build wellness rather than treat
+							disease. It is health that is real wealth <br /> and not pieces of gold and silver. 
 						</p>
 						<div className="mt-8 flex gap-6">
 							<button className="btn">Book an Appointment</button>
@@ -26,9 +26,9 @@ const Banner = () => {
 				</div>
 			</div>
 			<div>
-			<div className="banner-img-wrap">
-							<img src={docImg} alt="" />
-						</div>
+				<div className="banner-img-wrap">
+					<img src={docImg} alt="" />
+				</div>
 				<div className="banner-shape hidden md:block">
 					<img src={shapeImg} alt="" />
 				</div>

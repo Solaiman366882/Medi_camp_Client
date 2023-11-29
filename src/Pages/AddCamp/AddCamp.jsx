@@ -2,9 +2,9 @@ import { useFormik } from "formik";
 import SectionTitle from "../../Component/Shared/SectionTitle/SectionTitle";
 import { CampSchema } from "../../Schemas";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const AddCamp = () => {
-
 	const img_api_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 	const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_api_key}`;
 	const axiosPublic = useAxiosPublic();
@@ -33,21 +33,24 @@ const AddCamp = () => {
 	} = useFormik({
 		initialValues: initialValues,
 		validationSchema: CampSchema,
-		onSubmit: async(values ,{setSubmitting}) => {
+		onSubmit: async (values, { setSubmitting }) => {
 			console.log(values);
-			const imgFile = {image : values.camp_img}
-			const res = await axiosPublic.post(img_hosting_api,imgFile,{
-				headers:{
-					'content-type':'multipart/form-data'
-				}
+			const imgFile = { image: values.camp_img };
+			const res = await axiosPublic.post(img_hosting_api, imgFile, {
+				headers: {
+					"content-type": "multipart/form-data",
+				},
 			});
-			console.log('img posted successfully',res.data);
-			setSubmitting(false)
+			console.log("img posted successfully", res.data);
+			setSubmitting(false);
 		},
 	});
 
 	return (
 		<div className="section-padding">
+			<Helmet>
+				<title>Atom | Add Camp</title>
+			</Helmet>
 			<div className="max-w-screen-xl mx-auto px-5">
 				<div>
 					<SectionTitle

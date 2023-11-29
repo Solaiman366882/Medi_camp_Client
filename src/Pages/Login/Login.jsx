@@ -5,6 +5,7 @@ import SocialLogin from "../../Component/Shared/SocialLogin/SocialLogin";
 import { LoginSchema } from "../../Schemas";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
 	const { userLogin } = useAuth();
@@ -29,6 +30,7 @@ const Login = () => {
 		});
 	return (
 		<div className="w-full section-padding">
+			<Helmet><title>Atom | Login</title></Helmet>
 			<div className="max-w-screen-xl mx-auto px-5">
 				<div>
 					<SectionTitle

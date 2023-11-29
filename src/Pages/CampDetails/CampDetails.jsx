@@ -7,6 +7,7 @@ import { Button, Modal } from "flowbite-react";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const CampDetails = () => {
 	const [openModal, setOpenModal] = useState(false);
@@ -84,6 +85,9 @@ const CampDetails = () => {
 
 	return (
 		<div>
+			<Helmet>
+				<title>Atom | Camp Details</title>
+			</Helmet>
 			<div>
 				<PageBanner
 					subTitle="camp-details"

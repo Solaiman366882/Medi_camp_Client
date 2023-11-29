@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import PageBanner from "../../Component/Shared/PageBanner/PageBanner";
 import SectionTitle from "../../Component/Shared/SectionTitle/SectionTitle";
 import { ContactSchema } from "../../Schemas";
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
 
@@ -25,6 +26,7 @@ const Contact = () => {
 
 	return (
 		<div>
+			<Helmet><title>Atom | Contact</title></Helmet>
 			<div>
 				<PageBanner title="contact" subTitle="contact"></PageBanner>
 			</div>

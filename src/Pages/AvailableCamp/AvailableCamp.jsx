@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import CampCard from "../../Component/Shared/CampCard/CampCard";
 import PageBanner from "../../Component/Shared/PageBanner/PageBanner";
 import useCamps from "../../Hooks/useCamps";
@@ -8,6 +9,9 @@ const AvailableCamp = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Atom | Available Camps</title>
+            </Helmet>
             <div>
                 <PageBanner title="Explore All Camps" subTitle="available camps"></PageBanner>
             </div>

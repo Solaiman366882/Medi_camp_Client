@@ -10,11 +10,13 @@ const SectionTitle = ({ title, subTitle }) => {
 					{title || ""}
 				</h2>
 				<p className="font-bold text-pera ">
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-					Eaque quibusdam deleniti porro praesentium. Aliquam minus
-					quisquam velit in at nam.
+					He who has health has hope and he who has hope has
+					everything. Lets build wellness rather than treat disease.
+					It is health that is real wealth and not pieces of gold and
+					silver.
 				</p>
 			</div>
+			
 		</div>
 	);
 };

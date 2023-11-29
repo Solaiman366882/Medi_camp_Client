@@ -6,13 +6,14 @@ import { SignUpSchema } from "../../Schemas";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
 	const axiosPublic = useAxiosPublic();
 	const img_api_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 	const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_api_key}`;
 	const navigate = useNavigate();
-	const {createUser,updateUserProfile} = useAuth()
+	const { createUser, updateUserProfile } = useAuth();
 
 	const initialValues = {
 		name: "",
@@ -41,38 +42,37 @@ const Register = () => {
 				},
 			});
 			const photo = res.data.data.display_url;
-			createUser(values.email, values.password)
-            .then(() => {
-                updateUserProfile(values.name, photo)
-                    .then(() => {
-                        const userInfo = {
-                            name: values.name,
-                            email: values.email,
-							password:values.password,
-							role:"participants",
-							photo:photo,
-                        }
-                        axiosPublic.post('/users', userInfo)
-                            .then(res => {
-                                if (res.data.insertedId) {
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Your Account successfully created',
-                                        showConfirmButton: false,
-                                        timer: 2000
-                                    });
-                                    navigate('/');
-                                }
-                            })
-
-
-                    })
-                    .catch(error => console.log(error))
-            })
+			createUser(values.email, values.password).then(() => {
+				updateUserProfile(values.name, photo)
+					.then(() => {
+						const userInfo = {
+							name: values.name,
+							email: values.email,
+							password: values.password,
+							role: "participants",
+							photo: photo,
+						};
+						axiosPublic.post("/users", userInfo).then((res) => {
+							if (res.data.insertedId) {
+								Swal.fire({
+									icon: "success",
+									title: "Your Account successfully created",
+									showConfirmButton: false,
+									timer: 2000,
+								});
+								navigate("/");
+							}
+						});
+					})
+					.catch((error) => console.log(error));
+			});
 		},
 	});
 	return (
 		<div className="w-full section-padding">
+			<Helmet>
+				<title>Atom | Register</title>
+			</Helmet>
 			<div className="max-w-screen-xl mx-auto px-5">
 				<div>
 					<SectionTitle
