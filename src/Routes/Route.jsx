@@ -9,6 +9,8 @@ import AddCamp from "../Pages/AddCamp/AddCamp";
 import AvailableCamp from "../Pages/AvailableCamp/AvailableCamp";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import DashBoardLayout from "../Layouts/DashBoardLayout";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 
 
 
@@ -34,10 +36,6 @@ export const router = createBrowserRouter([
                 element:<Contact></Contact>
             },
             {
-                path:'/add-a-camp',
-                element:<AddCamp></AddCamp>
-            },
-            {
                 path:'/camp-details/:campId',
                 element:<PrivateRoute><CampDetails></CampDetails></PrivateRoute>
             },
@@ -47,7 +45,21 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/dashboard',
-                element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>
+                element:<PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
+                children:[
+                    {
+                        path:'/dashboard',
+                        element:<Dashboard></Dashboard>
+                    },
+                    {
+                        path:'/dashboard/add-a-camp',
+                        element:<AddCamp></AddCamp>
+                    },
+                    {
+                        path:'/dashboard/allUsers',
+                        element:<AllUsers></AllUsers>
+                    }
+                ]
             }
         ]
     }

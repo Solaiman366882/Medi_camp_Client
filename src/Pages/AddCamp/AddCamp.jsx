@@ -47,11 +47,11 @@ const AddCamp = () => {
 	});
 
 	return (
-		<div className="section-padding">
+		<div className="pt-8">
 			<Helmet>
 				<title>Atom | Add Camp</title>
 			</Helmet>
-			<div className="max-w-screen-xl mx-auto px-5">
+			<div className="w-full mx-auto px-5">
 				<div>
 					<SectionTitle
 						title="New Camp"
@@ -59,7 +59,7 @@ const AddCamp = () => {
 					></SectionTitle>
 				</div>
 				<div className="mt-8">
-					<div className="form-area">
+					<div className="form-area mx-auto">
 						<form
 							onSubmit={handleSubmit}
 							className="grid grid-cols-2 gap-5"

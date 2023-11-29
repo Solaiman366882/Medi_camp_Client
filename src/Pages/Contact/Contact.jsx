@@ -6,27 +6,28 @@ import { ContactSchema } from "../../Schemas";
 import { Helmet } from "react-helmet";
 
 const Contact = () => {
-
-
 	const initialValues = {
-		name:"",
-		email:"",
-		phone:"",
-		subject:"",
-		message:"",
-	}
+		name: "",
+		email: "",
+		phone: "",
+		subject: "",
+		message: "",
+	};
 
-	const {handleSubmit,handleChange,handleBlur,values,touched,errors} = useFormik({
-		initialValues:initialValues,
-		validationSchema:ContactSchema,
-		onSubmit: values => {
-			console.log(values);
-		}
-	})
+	const { handleSubmit, handleChange, handleBlur, values, touched, errors } =
+		useFormik({
+			initialValues: initialValues,
+			validationSchema: ContactSchema,
+			onSubmit: (values) => {
+				console.log(values);
+			},
+		});
 
 	return (
 		<div>
-			<Helmet><title>Atom | Contact</title></Helmet>
+			<Helmet>
+				<title>Atom | Contact</title>
+			</Helmet>
 			<div>
 				<PageBanner title="contact" subTitle="contact"></PageBanner>
 			</div>
@@ -54,7 +55,11 @@ const Contact = () => {
 											onBlur={handleBlur}
 											value={values.name}
 										/>
-										{errors.name && touched.name ? <p className="mt-3 text-red-700">{errors.name}</p> : null}
+										{errors.name && touched.name ? (
+											<p className="mt-3 text-red-700">
+												{errors.name}
+											</p>
+										) : null}
 									</div>
 									<div className="single-input">
 										<label htmlFor="email">email</label>
@@ -67,7 +72,11 @@ const Contact = () => {
 											onBlur={handleBlur}
 											value={values.email}
 										/>
-										{errors.email && touched.email ? <p className="mt-3 text-red-700">{errors.email}</p>:null}
+										{errors.email && touched.email ? (
+											<p className="mt-3 text-red-700">
+												{errors.email}
+											</p>
+										) : null}
 									</div>
 									<div className="single-input">
 										<label htmlFor="phone">phone</label>
@@ -80,7 +89,11 @@ const Contact = () => {
 											onBlur={handleBlur}
 											value={values.phone}
 										/>
-										{errors.phone && touched.phone ? <p className="mt-3 text-red-700">{errors.phone}</p> : null}
+										{errors.phone && touched.phone ? (
+											<p className="mt-3 text-red-700">
+												{errors.phone}
+											</p>
+										) : null}
 									</div>
 									<div className="single-input">
 										<label htmlFor="subject">subject</label>
@@ -106,17 +119,28 @@ const Contact = () => {
 											onBlur={handleBlur}
 											value={values.message}
 										></textarea>
-										{errors.message && touched.message ? <p className="mt-3 text-red-700">{errors.name}</p>:null}
+										{errors.message && touched.message ? (
+											<p className="mt-3 text-red-700">
+												{errors.name}
+											</p>
+										) : null}
 									</div>
 								</div>
 								<div className="mt-7 flex justify-between items-center">
 									<div>
-										<h3 className="text-primary font-bold text-2xl mb-2">For Emergency</h3>
-										<a href="tel:+442-456a-789" className="text-secondary text-base font-semibold hover:text-primary">
+										<h3 className="text-primary font-bold text-2xl mb-2">
+											For Emergency
+										</h3>
+										<a
+											href="tel:+442-456a-789"
+											className="text-secondary text-base font-semibold hover:text-primary"
+										>
 											+442-456a-789
 										</a>
 									</div>
-									<button className="btn" type="submit">Send Message</button>
+									<button className="btn" type="submit">
+										Send Message
+									</button>
 								</div>
 							</form>
 						</div>

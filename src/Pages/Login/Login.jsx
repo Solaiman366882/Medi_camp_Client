@@ -30,7 +30,9 @@ const Login = () => {
 		});
 	return (
 		<div className="w-full section-padding">
-			<Helmet><title>Atom | Login</title></Helmet>
+			<Helmet>
+				<title>Atom | Login</title>
+			</Helmet>
 			<div className="max-w-screen-xl mx-auto px-5">
 				<div>
 					<SectionTitle
@@ -90,7 +92,7 @@ const Login = () => {
 								<div>
 									<p className="mt-5 text-primary font-semibold text-center">
 										Not a member?{" "}
-										<Link className="text-secondary ml-3">
+										<Link className="text-secondary ml-3" to="/register">
 											Register
 										</Link>
 									</p>

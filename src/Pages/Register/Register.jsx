@@ -181,16 +181,16 @@ const Register = () => {
 							</div>
 							<div className="text-center mt-5">
 								<button className="btn" type="submit">
-									Login Now
+									Submit Now
 								</button>
 							</div>
 						</form>
 						<div>
 							<div className="mt-3">
 								<p className=" text-primary font-semibold text-center">
-									Not a member?{" "}
-									<Link className="text-secondary ml-3">
-										Register
+									Already a member?{" "}
+									<Link className="text-secondary ml-3" to="/login">
+										Login
 									</Link>
 								</p>
 							</div>
