@@ -13,6 +13,7 @@ const CampCard = ({ camp }) => {
 		camp_services,
 		audience,
 		camp_professionals,
+		participants,
 		_id
 	} = camp || {};
 	return (
@@ -39,6 +40,9 @@ const CampCard = ({ camp }) => {
 				</div>
 				<div>
 					<p className="text-primary">Target Audience : {audience}</p>
+				</div>
+				<div>
+					<p className="text-primary">Participants: {participants}</p>
 				</div>
 				<div className="mt-3">
 					<Link className="read" to={`/camp-details/${_id}`}>

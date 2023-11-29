@@ -100,22 +100,22 @@ const Header = () => {
 						>
 							Contact Us
 						</NavLink>
-						<NavLink
-							to="/register"
-							className={({ isActive, isPending }) =>
-								isPending ? "pending" : isActive ? "active" : ""
-							}
-						>
-							Register
-						</NavLink>
-						<NavLink
-							to="/add-a-camp"
-							className={({ isActive, isPending }) =>
-								isPending ? "pending" : isActive ? "active" : ""
-							}
-						>
-							Add Camp
-						</NavLink>
+						{user ? (
+							""
+						) : (
+							<NavLink
+								to="/register"
+								className={({ isActive, isPending }) =>
+									isPending
+										? "pending"
+										: isActive
+										? "active"
+										: ""
+								}
+							>
+								Register
+							</NavLink>
+						)}
 					</div>
 				</Navbar.Collapse>
 			</Navbar>

@@ -10,7 +10,7 @@ const MainLayout = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			setPreLoad(false);
-		}, 2000);
+		}, 1000);
 	}, []);
 	return isPreLoad ? (
 		<Loader></Loader>
