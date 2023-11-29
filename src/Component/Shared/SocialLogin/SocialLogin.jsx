@@ -15,7 +15,6 @@ const SocialLogin = () => {
     const handleGoogleLogin = () => {
         googleLogin()
         .then(res => {
-            console.log(res);
             const userInfo = {
                 email: res.user?.email,
                 name: res.user?.displayName,
@@ -23,8 +22,7 @@ const SocialLogin = () => {
                 role:'participants'
             }
             axiosPublic.post('/users',userInfo)
-            .then(result => {
-                console.log(result.data);
+            .then(() => {
                 Swal.fire({
                     title: "Logged In",
                     text: `Welcome ${res?.user?.displayName}`,

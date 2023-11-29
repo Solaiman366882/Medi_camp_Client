@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import Banner from "../../Component/Home/Banner/Banner";
 import Quality from "../../Component/Home/Quality/Quality";
 import Popular from "../../Component/Home/Popular/Popular";
+import ServiceSection from "../../Component/Home/ServiceSection/ServiceSection";
 
 const Home = () => {
 	return (
@@ -13,12 +14,15 @@ const Home = () => {
 				<Banner></Banner>
 			</div>
 			<div className="max-w-screen-xl mx-auto px-5">
-				<div >
+				<div>
 					<Quality></Quality>
 				</div>
 				<div>
 					<Popular></Popular>
 				</div>
+			</div>
+			<div className="mt-20">
+				<ServiceSection></ServiceSection>
 			</div>
 		</div>
 	);

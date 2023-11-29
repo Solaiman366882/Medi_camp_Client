@@ -34,7 +34,6 @@ const Register = () => {
 		initialValues: initialValues,
 		validationSchema: SignUpSchema,
 		onSubmit: async (values) => {
-			console.log(values);
 			const imgFile = { image: values.profile_img };
 			const res = await axiosPublic.post(img_hosting_api, imgFile, {
 				headers: {
@@ -43,9 +42,7 @@ const Register = () => {
 			});
 			const photo = res.data.data.display_url;
 			createUser(values.email, values.password)
-            .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser);
+            .then(() => {
                 updateUserProfile(values.name, photo)
                     .then(() => {
                         const userInfo = {

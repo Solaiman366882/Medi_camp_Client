@@ -19,16 +19,12 @@ const Login = () => {
 			initialValues: initialValues,
 			validationSchema: LoginSchema,
 			onSubmit: (values) => {
-				console.log(values);
 				userLogin(values.email, values.password)
-					.then((result) => {
-						//redirect after successfull login
+					.then(() => {
 						navigate(location?.state ? location.state : "/");
-						console.log(result);
 						Swal.fire("Good job!", "Login Successfully", "success");
 					})
 					.catch((err) => console.log(err));
-				console.log(values.email, values.password);
 			},
 		});
 	return (

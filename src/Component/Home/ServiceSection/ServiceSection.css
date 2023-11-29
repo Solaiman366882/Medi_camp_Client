@@ -1,0 +1,130 @@
+.service-section {
+    width: 100%;
+    background: url(../../../assets/images/work-bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.service-section .service-card {
+    text-align: center;
+    background-color: #ffffff;
+    -webkit-box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    position: relative;
+    z-index: 1;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    margin-bottom: 30px;
+    border-radius: 10px 10px 100px 10px;
+    overflow: hidden;
+}
+
+.service-card::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #05e8c2;
+    -webkit-box-shadow: 0 0 15px #05e8c2;
+    box-shadow: 0 0 15px #05e8c2;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    z-index: -1;
+    -webkit-transition: 1.5s;
+    transition: 1.5s;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+    border-radius: 10px 10px 100px 10px;
+}
+
+.service-card::before {
+    content: "";
+    position: absolute;
+    right: 500px;
+    top: 50%;
+    width: 100%;
+    height: 10px;
+    background-color: #05e8c2;
+    -webkit-box-shadow: 0 0 15px #05e8c2;
+    box-shadow: 0 0 15px #05e8c2;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    z-index: -1;
+}
+
+.service-card:hover::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.service-card:hover::before {
+    right: -500px;
+}
+
+.service-card .icon-wrap {
+    display: inline-block;
+    border: 1px solid #05e8c2;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 15px;
+}
+
+.service-card .icon-wrap::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #dcfcfe;
+    margin: 5px;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.service-card .icon-wrap .card-icon {
+    color: #05e8c2;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+}
+
+.service-card h2 {
+    color: #001430;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.service-card .pera {
+    color: #525252;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+.service-card p.read {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: #05e8c2;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.6s;
+}
+.service-card p.read:hover svg{
+    animation: rotation 0.5s linear infinite;
+}
+.service-card:hover  p.read{
+    color: #001430;
+}
