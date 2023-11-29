@@ -14,6 +14,7 @@ import {
 	updateProfile,
 } from "firebase/auth";
 import { app } from "../config/firebaseConfig";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 // Auth created for all authentication function
 const auth = getAuth(app);
@@ -26,6 +27,7 @@ const AuthProvider = ({ children }) => {
 	const googleProvider = new GoogleAuthProvider();
 	const facebookProvider = new FacebookAuthProvider();
 	const githubProvider = new GithubAuthProvider();
+	const axiosPublic = useAxiosPublic();
 
 	//create user with email password
 	const createUser = (email, password) => {
@@ -60,23 +62,36 @@ const AuthProvider = ({ children }) => {
 	};
 
 	//updateProfile
-	const updateUserProfile = (name,photo) => {
-		return updateProfile(auth.currentUser,{
-			displayName:name,
-			photoURL:photo
+	const updateUserProfile = (name, photo) => {
+		return updateProfile(auth.currentUser, {
+			displayName: name,
+			photoURL: photo,
 		});
 	};
 
 	useEffect(() => {
 		const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
 			setUser(currentUser);
+			if (currentUser) {
+				const userEmail = {email:currentUser?.email};
+				axiosPublic.post('/jwt',userEmail)
+				.then(res => {
+					if(res.data.token)
+					{
+						localStorage.setItem('access-token',res.data.token);
+					}
+				})
+
+			} else {
+				localStorage.removeItem('access-token');
+			}
 			setLoading(false);
 		});
 
 		return () => {
 			unSubscribe();
 		};
-	}, []);
+	}, [axiosPublic]);
 
 	const authentications = {
 		user,
@@ -87,7 +102,7 @@ const AuthProvider = ({ children }) => {
 		googleLogin,
 		facebookLogin,
 		githubLogin,
-		updateUserProfile
+		updateUserProfile,
 	};
 	return (
 		<AuthContext.Provider value={authentications}>

@@ -1,16 +1,21 @@
 import {
 	FaEdge,
+	FaFeatherPointed,
 	FaHouseMedical,
+	FaPaypal,
 	FaPuzzlePiece,
 	FaRegRegistered,
 	FaUser,
+	FaUserCheck,
 } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import "./SideBar.css";
+import useAdmin from "../../../Hooks/useAdmin";
+import useOrganizer from "../../../Hooks/useOrganizer";
 
 const SideBar = () => {
-	const isAdmin = true;
-	const isOrganizer = false;
+	const [isAdmin] = useAdmin();
+	const [isOrganizer] = useOrganizer();
 	return (
 		<div>
 			<div className="sidebar bg-primary text-white py-5">
@@ -96,7 +101,6 @@ const SideBar = () => {
 					</ul>
 				) : isOrganizer ? (
 					<ul className="sidebar-list ">
-						<h2>isOrganizer</h2>
 						<li>
 							<NavLink
 								to="/dashboard/profile"
@@ -108,7 +112,7 @@ const SideBar = () => {
 										: ""
 								}
 							>
-								<FaPuzzlePiece className="list-icon"></FaPuzzlePiece>
+								<FaUserCheck className="list-icon"></FaUserCheck>
 								<span>Profile</span>
 							</NavLink>
 						</li>
@@ -171,38 +175,8 @@ const SideBar = () => {
 										: ""
 								}
 							>
-								<FaPuzzlePiece className="list-icon"></FaPuzzlePiece>
+								<FaUser className="list-icon"></FaUser>
 								<span>Profile</span>
-							</NavLink>
-						</li>
-						<li>
-							<NavLink
-								to="/dashboard/add-a-camp"
-								className={({ isActive, isPending }) =>
-									isPending
-										? "pending"
-										: isActive
-										? "active"
-										: ""
-								}
-							>
-								<FaHouseMedical className="list-icon"></FaHouseMedical>
-								<span>Add Camp</span>
-							</NavLink>
-						</li>
-						<li>
-							<NavLink
-								to="/dashboard/manage-camps"
-								className={({ isActive, isPending }) =>
-									isPending
-										? "pending"
-										: isActive
-										? "active"
-										: ""
-								}
-							>
-								<FaEdge className="list-icon"></FaEdge>
-								<span>Manage Camps</span>
 							</NavLink>
 						</li>
 						<li>
@@ -218,6 +192,36 @@ const SideBar = () => {
 							>
 								<FaRegRegistered className="list-icon"></FaRegRegistered>
 								<span>Registered Camps</span>
+							</NavLink>
+						</li>
+						<li>
+							<NavLink
+								to="/dashboard/payment-history"
+								className={({ isActive, isPending }) =>
+									isPending
+										? "pending"
+										: isActive
+										? "active"
+										: ""
+								}
+							>
+								<FaPaypal className="list-icon"></FaPaypal>
+								<span>Pay History</span>
+							</NavLink>
+						</li>
+						<li>
+							<NavLink
+								to="/dashboard/feedback-and-ratings"
+								className={({ isActive, isPending }) =>
+									isPending
+										? "pending"
+										: isActive
+										? "active"
+										: ""
+								}
+							>
+								<FaFeatherPointed className="list-icon"></FaFeatherPointed>
+								<span>Feedback</span>
 							</NavLink>
 						</li>
 					</ul>
