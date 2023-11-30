@@ -35,7 +35,7 @@ const AvailableCamp = () => {
 		e.preventDefault();
 		const searchValue = e.target.search.value;
 		const filterCamps = camps.filter((camp) =>
-			camp.camp_name.toLowerCase().includes(searchValue)
+			camp.camp_name.toLowerCase().includes(searchValue.toLowerCase())
 		);
 		setSearchedCamps(filterCamps);
 		setIsSearch(true);
@@ -73,12 +73,25 @@ const AvailableCamp = () => {
 			</div>
 			<div>
 				{isSearch ? (
-					searchedCamps.length > 0 ? <div className="py-12">
-                    <CardCollection camps={searchedCamps}></CardCollection>
-                </div> : <div className="w-full h-[50vh] flex flex-col gap-7 justify-center items-center">
-                    <h3 className="text-gray-500 text-4xl text-center font-bold">No Match Found</h3>
-                    <button className="btn" onClick={() => setIsSearch(false)}>Show All Cards</button>
-                </div>
+					searchedCamps.length > 0 ? (
+						<div className="py-12">
+							<CardCollection
+								camps={searchedCamps}
+							></CardCollection>
+						</div>
+					) : (
+						<div className="w-full h-[50vh] flex flex-col gap-7 justify-center items-center">
+							<h3 className="text-gray-500 text-4xl text-center font-bold">
+								No Match Found
+							</h3>
+							<button
+								className="btn"
+								onClick={() => setIsSearch(false)}
+							>
+								Show All Cards
+							</button>
+						</div>
+					)
 				) : (
 					<div className="mx-auto py-12">
 						<Tabs

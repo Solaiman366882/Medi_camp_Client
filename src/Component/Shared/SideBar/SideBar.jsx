@@ -181,7 +181,7 @@ const SideBar = () => {
 						</li>
 						<li>
 							<NavLink
-								to="/dashboard/manage-registered-camps"
+								to="/dashboard/registered-camps"
 								className={({ isActive, isPending }) =>
 									isPending
 										? "pending"

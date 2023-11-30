@@ -85,7 +85,7 @@ const Header = () => {
 							Available Camps
 						</NavLink>
 						<NavLink
-							to="/dashboard"
+							to="/dashboard/profile"
 							className={({ isActive, isPending }) =>
 								isPending ? "pending" : isActive ? "active" : ""
 							}
