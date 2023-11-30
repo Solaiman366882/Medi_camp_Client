@@ -17,6 +17,7 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserFeedback from "../Pages/Dashboard/UserFeedback/UserFeedback";
 import ManageCamps from "../Pages/Dashboard/ManageCamps/ManageCamps";
 import ManageRegisteredCamps from "../Pages/Dashboard/ManageRegisteredCamps/ManageRegisteredCamps";
+import UpdateCamp from "../Pages/Dashboard/UpdateCamp/UpdateCamp";
 
 
 
@@ -88,6 +89,10 @@ export const router = createBrowserRouter([
                     {
                         path:'/dashboard/manage-registered-camps',
                         element:<ManageRegisteredCamps></ManageRegisteredCamps>
+                    },
+                    {
+                        path:'/dashboard/updateCamp/:id',
+                        element:<UpdateCamp></UpdateCamp>
                     }
                     
                 ]

@@ -6,7 +6,7 @@ const useCamps = () => {
 
     const axiosPublic = useAxiosPublic();
 
-    const {data:camps = [],isLoading} = useQuery({
+    const {data:camps = [],isLoading,refetch} = useQuery({
         queryKey:['camps'],
         queryFn: async() => {
             const res = await axiosPublic.get('/camps');
@@ -14,7 +14,7 @@ const useCamps = () => {
         }
     })
 
-    return [camps,isLoading]
+    return [camps,isLoading,refetch]
 };
 
 export default useCamps;
