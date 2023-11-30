@@ -3,6 +3,7 @@ import Banner from "../../Component/Home/Banner/Banner";
 import Quality from "../../Component/Home/Quality/Quality";
 import Popular from "../../Component/Home/Popular/Popular";
 import ServiceSection from "../../Component/Home/ServiceSection/ServiceSection";
+import Testimonial from "../../Component/Home/Testimonial/Testimonial";
 
 const Home = () => {
 	return (
@@ -23,6 +24,9 @@ const Home = () => {
 			</div>
 			<div className="mt-20">
 				<ServiceSection></ServiceSection>
+			</div>
+			<div>
+				<Testimonial></Testimonial>
 			</div>
 		</div>
 	);
