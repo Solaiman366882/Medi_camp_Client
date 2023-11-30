@@ -14,10 +14,11 @@ const ParticipantsRegCamps = () => {
         queryKey:['registered camps'],
         queryFn:async() => {
             const res = await axiosSecure.get(`/register?email=${user.email}`);
-            console.log(res.data);
             return res.data;
         }
     });
+
+
     const handleCancel = id => {
         Swal.fire({
             title: "Do you want to cancel",

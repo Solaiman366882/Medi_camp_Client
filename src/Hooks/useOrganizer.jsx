@@ -11,7 +11,6 @@ const useOrganizer = () => {
         queryKey:[user?.email,'isOrganizer'],
         queryFn: async() => {
             const res = await axiosSecure.get(`/users/organizer/${user?.email}`);
-            console.log(res.data);
             return res.data.organizer;
         }
     })
