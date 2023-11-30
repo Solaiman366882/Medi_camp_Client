@@ -161,17 +161,17 @@ const AllUsers = () => {
 			<div>
 				<Table>
 					<Table.Head className="bg-primary">
-						<Table.HeadCell></Table.HeadCell>
-						<Table.HeadCell className="text-primary font-bold text-base">
+						<Table.HeadCell className="text-secondary bg-primary"></Table.HeadCell>
+						<Table.HeadCell className="text-secondary bg-primary font-bold text-base">
 							Name
 						</Table.HeadCell>
-						<Table.HeadCell className="text-primary font-bold text-base">
+						<Table.HeadCell className="text-secondary bg-primary font-bold text-base">
 							Email
 						</Table.HeadCell>
-						<Table.HeadCell className="text-primary font-bold text-base">
+						<Table.HeadCell className="text-secondary bg-primary font-bold text-base">
 							role
 						</Table.HeadCell>
-						<Table.HeadCell className="text-primary font-bold text-base">
+						<Table.HeadCell className="text-secondary bg-primary font-bold text-base">
 							Action
 						</Table.HeadCell>
 					</Table.Head>

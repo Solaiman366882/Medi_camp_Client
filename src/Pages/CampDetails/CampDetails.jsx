@@ -59,6 +59,11 @@ const CampDetails = () => {
 			email: user?.email,
 			camp_name,
 			camp_id: campId,
+			start_date,
+			end_date,
+			pay_status:'unpaid',
+			status:'pending',
+			venue,
 		};
 		const participantCount = parseInt(participants) + 1;
 		const updated = { participants: participantCount };
@@ -94,7 +99,7 @@ const CampDetails = () => {
 					title={camp_name}
 				></PageBanner>
 			</div>
-			<div className="mt-8 max-w-screen-xl mx-auto px-5">
+			<div className="mt-8 max-w-screen-xl mx-auto px-5 mb-8">
 				<div className="camp-details">
 					<div className="camp-img">
 						<img src={camp_img} alt="" />
