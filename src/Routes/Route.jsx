@@ -15,6 +15,8 @@ import Profile from "../Pages/Dashboard/Profile/Profile";
 import ParticipantsRegCamps from "../Pages/Dashboard/ParticipantsRegCamps/ParticipantsRegCamps";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserFeedback from "../Pages/Dashboard/UserFeedback/UserFeedback";
+import ManageCamps from "../Pages/Dashboard/ManageCamps/ManageCamps";
+import ManageRegisteredCamps from "../Pages/Dashboard/ManageRegisteredCamps/ManageRegisteredCamps";
 
 
 
@@ -79,6 +81,14 @@ export const router = createBrowserRouter([
                         path:'/dashboard/feedback-and-ratings',
                         element:<UserFeedback></UserFeedback>
                     },
+                    {
+                        path:'/dashboard/manage-camps',
+                        element:<ManageCamps></ManageCamps>
+                    },
+                    {
+                        path:'/dashboard/manage-registered-camps',
+                        element:<ManageRegisteredCamps></ManageRegisteredCamps>
+                    }
                     
                 ]
             }

@@ -3,11 +3,14 @@ import SectionTitle from "../../Component/Shared/SectionTitle/SectionTitle";
 import { CampSchema } from "../../Schemas";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AddCamp = () => {
 	const img_api_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 	const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_api_key}`;
 	const axiosPublic = useAxiosPublic();
+	const axiosSecure = useAxiosSecure();
 
 	const initialValues = {
 		camp_name: "",
@@ -33,7 +36,7 @@ const AddCamp = () => {
 	} = useFormik({
 		initialValues: initialValues,
 		validationSchema: CampSchema,
-		onSubmit: async (values, { setSubmitting }) => {
+		onSubmit: async (values) => {
 			console.log(values);
 			const imgFile = { image: values.camp_img };
 			const res = await axiosPublic.post(img_hosting_api, imgFile, {
@@ -41,8 +44,32 @@ const AddCamp = () => {
 					"content-type": "multipart/form-data",
 				},
 			});
-			console.log("img posted successfully", res.data);
-			setSubmitting(false);
+			//console.log("img posted successfully", res.data);
+			const newCamp = {
+				camp_name: values.camp_name,
+				camp_fees: values.camp_fees,
+				start_date: values.start_date,
+				end_date: values.end_date,
+				camp_professionals: values.camp_professionals,
+				venue: values.venue,
+				camp_services: values.camp_services,
+				audience: values.audience,
+				camp_img: res.data.data.display_url,
+				camp_description: values.camp_description,
+				participants: 0,
+			};
+			console.log(newCamp);
+			axiosSecure.post("/camps", newCamp)
+			.then((res) => {
+				if (res.data.insertedId) {
+					Swal.fire({
+						title: "Good job!",
+						text: "Successfully Added new Camp",
+						icon: "success",
+					});
+				}
+			})
+			.catch(err => console.log(err))
 		},
 	});
 
@@ -205,8 +232,14 @@ const AddCamp = () => {
 									<option value="Select Audience" disabled>
 										Select Audience
 									</option>
+									<option value="Adults aged 25 and above">
+										Adults aged 25 and above
+									</option>
 									<option value="Seniors aged 65 and above">
 										Seniors aged 65 and above
+									</option>
+									<option value="children up to 12 years old">
+										children up to 12 years old
 									</option>
 									<option value="mental health support and stress management">
 										Mental health support, stress management

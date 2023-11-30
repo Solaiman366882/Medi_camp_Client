@@ -53,7 +53,7 @@ export const ContactSchema = Yup.object().shape({
 //add camp schema
 export const CampSchema = Yup.object().shape({
 	camp_name: Yup.string()
-		.min(30, "You have enter minimum 30 characters")
+		.min(20, "You have enter minimum 20 characters")
 		.required("Required"),
 	camp_fees: Yup.string().required("Required"),
 	start_date: Yup.date().required("Starting Date is required"),

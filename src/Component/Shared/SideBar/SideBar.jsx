@@ -22,7 +22,6 @@ const SideBar = () => {
 				{isAdmin ? (
 					
 					<ul className="sidebar-list ">
-						<h2>Admin</h2>
 						<li>
 							<NavLink
 								to="/dashboard/profile"

@@ -16,7 +16,6 @@ const SliderComponent = ({ feedback }) => {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 	};
-	console.log(feedback);
 	return (
 		<div className="overflow-hidden max-w-5xl mx-auto">
 			<Slider {...settings}>
