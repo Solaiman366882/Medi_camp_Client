@@ -15,8 +15,8 @@
 ## Important Link
 
  - [Live Website link](https://atom-8ce7b.web.app/)
- - [Client Repository link](https://github.com/programming-hero-web-course1/b8a12-client-side-Solaiman366882)
- - [Server Repository link](https://github.com/programming-hero-web-course1/b8a12-server-side-Solaiman366882)
+ - [Client Repository link](https://github.com/Solaiman366882/Medi_camp_Client)
+ - [Server Repository link](https://github.com/Solaiman366882/Medi_Camp_Server)
 
 
 
